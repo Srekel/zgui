@@ -1167,7 +1167,8 @@ extern "C"
         ImGui::ShowDemoWindow(p_open);
     }
 
-    ZGUI_API void zguiShowMetricsWindow(bool* p_open) {
+    ZGUI_API void zguiShowMetricsWindow(bool *p_open)
+    {
         ImGui::ShowMetricsWindow(p_open);
     }
 
@@ -1525,7 +1526,8 @@ extern "C"
         return ImGui::GetIO().WantTextInput;
     }
 
-    ZGUI_API float zguiIoFramerate() {
+    ZGUI_API float zguiIoFramerate()
+    {
         return ImGui::GetIO().Framerate;
     }
 
