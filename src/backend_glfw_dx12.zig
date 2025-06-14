@@ -2,31 +2,12 @@ const gui = @import("gui.zig");
 const backend_glfw = @import("backend_glfw.zig");
 const backend_dx12 = @import("backend_dx12.zig");
 
-pub const D3D12_CPU_DESCRIPTOR_HANDLE = backend_dx12.D3D12_CPU_DESCRIPTOR_HANDLE;
-pub const D3D12_GPU_DESCRIPTOR_HANDLE = backend_dx12.D3D12_GPU_DESCRIPTOR_HANDLE;
-
 pub fn init(
     window: *const anyopaque, // zglfw.Window
-    device: *const anyopaque, // ID3D12Device
-    num_frames_in_flight: u32,
-    rtv_format: c_uint, // DXGI_FORMAT
-    cbv_srv_heap: *const anyopaque, // ID3D12DescriptorHeap
-    root_signature: *const anyopaque, // ID3D12RootSignature
-    pipeline_state: *const anyopaque, // ID3D12PipelineState
-    font_srv_cpu_desc_handle: backend_dx12.D3D12_CPU_DESCRIPTOR_HANDLE,
-    font_srv_gpu_desc_handle: backend_dx12.D3D12_GPU_DESCRIPTOR_HANDLE,
+    init_info: backend_dx12.ImGui_ImplDX12_InitInfo,
 ) void {
     backend_glfw.init(window);
-    backend_dx12.init(
-        device,
-        num_frames_in_flight,
-        rtv_format,
-        cbv_srv_heap,
-        root_signature,
-        pipeline_state,
-        font_srv_cpu_desc_handle,
-        font_srv_gpu_desc_handle,
-    );
+    backend_dx12.init(init_info);
 }
 
 pub fn deinit() void {
