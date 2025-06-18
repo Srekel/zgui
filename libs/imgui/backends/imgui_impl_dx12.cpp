@@ -585,8 +585,6 @@ bool ImGui_ImplDX12_Init(ImGui_ImplDX12_InitInfo* init_info)
     bd->pd3dSrvDescHeap = init_info->SrvDescriptorHeap;
     bd->pRootSignature = init_info->root_signature;
     bd->pPipelineState = init_info->pipeline_state;
-    bd->hFontSrvCpuDescHandle = init_info->font_srv_cpu_desc_handle;
-    bd->hFontSrvGpuDescHandle = init_info->font_srv_gpu_desc_handle;
 
     io.BackendRendererUserData = (void*)bd;
     io.BackendRendererName = "imgui_impl_dx12";
@@ -677,7 +675,7 @@ void ImGui_ImplDX12_NewFrame()
     ImGui_ImplDX12_Data* bd = ImGui_ImplDX12_GetBackendData();
     IM_ASSERT(bd != nullptr && "Did you call ImGui_ImplDX12_Init()?");
 
-    if (!bd->pFontTextureResource)
+    if (!bd->FontTexture.pTextureResource)
         ImGui_ImplDX12_CreateDeviceObjects();
 }
 
